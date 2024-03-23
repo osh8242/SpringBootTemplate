@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="euc-kr" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.douzone.platform.mapper.SampleMapper">
+
+	<!-- select -->
+	<select id="findByAll" resultType="sample">
+		SELECT
+			id as id,
+			keyword as keyword,
+			keyword_status as keywordStatus
+		FROM
+			table_name
+	</select>
+	
+	<select id="findByExist" resultType="hashmap">
+		SELECT
+			id as id
+		FROM
+			table_name
+		WHERE
+			keyword=#{keyword}
+		AND
+			keyword_status=#{keywordStatus}
+	</select>
+	
+	
+	<!-- insert -->
+	<insert id="insert" parameterType="sample">
+     	INSERT INTO table_name (
+     		keyword,
+     		keyword_status
+     	)
+      	VALUES (
+      		#{keyword},
+      		#{keywordStatus}
+      	)
+    </insert>
+    
+    <!-- update -->
+    <update id="updateKeyword" parameterType="sample">
+    	UPDATE
+    		table_name
+    	SET
+    		keyword=#{keyword}
+    	WHERE
+			keyword_status=#{keywordStatus}
+    </update>
+	
+		
+</mapper>

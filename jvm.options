@@ -1,0 +1,4 @@
+-javaagent:./lib/elastic-apm-agent-1.28.1.jar 
+-Delastic.apm.service_name=MD-프로젝트명-WAS
+-Delastic.apm.application_packages=com.douzone.platform 
+-Delastic.apm.server_url=http://10.70.201.164:8200(적용할 APM 서버 IP로 수정)
