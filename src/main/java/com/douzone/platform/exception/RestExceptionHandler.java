@@ -24,8 +24,8 @@ public class RestExceptionHandler {
 
     //파라미터 오류 -> 400 리턴
     @ExceptionHandler(MissingServletRequestParameterException.class)
-    public ResponseEntity<HttpResponse> handleException(MissingServletRequestParameterException e, Locale locale) {
-        HttpResponse error = new HttpResponse();
+    public ResponseEntity<HttpErrorResponse> handleException(MissingServletRequestParameterException e, Locale locale) {
+        HttpErrorResponse error = new HttpErrorResponse();
         error.setStatus(HttpStatus.BAD_REQUEST.value());
         error.setMessage(getLocaleMessage(HttpStatus.BAD_REQUEST, locale));
         error.setComment(e.getMessage());
@@ -33,10 +33,10 @@ public class RestExceptionHandler {
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST); // body, status code
     }
 
-    // 조회하는 데이터 부재 오류 -> 404 리턴
+    // 필수데이터 부재 오류 -> 404 리턴
     @ExceptionHandler(DataNotFoundException.class)
-        public ResponseEntity<HttpResponse> handleException(DataNotFoundException e, Locale locale) {
-        HttpResponse error = new HttpResponse();
+        public ResponseEntity<HttpErrorResponse> handleException(DataNotFoundException e, Locale locale) {
+        HttpErrorResponse error = new HttpErrorResponse();
         error.setStatus(HttpStatus.NOT_FOUND.value());
         error.setMessage(getLocaleMessage(HttpStatus.NOT_FOUND, locale));
         error.setComment(e.getMessage());
@@ -46,8 +46,8 @@ public class RestExceptionHandler {
 
     // NullPointer 오류 -> 404 리턴
     @ExceptionHandler(NullPointerException.class)
-    public ResponseEntity<HttpResponse> handleException(NullPointerException e, Locale locale) {
-        HttpResponse error = new HttpResponse();
+    public ResponseEntity<HttpErrorResponse> handleException(NullPointerException e, Locale locale) {
+        HttpErrorResponse error = new HttpErrorResponse();
         error.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
         error.setMessage(getLocaleMessage(HttpStatus.INTERNAL_SERVER_ERROR, locale));
         error.setComment(e.getMessage());
@@ -55,10 +55,10 @@ public class RestExceptionHandler {
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND); // body, status code
     }
 
-    // 주로 DB 데이터를 DTO 객체로 변환시 발생 ->  500 리턴
+    // 주로 DB 데이터를 DTO 객체로 변환시 발생하는 오류 ->  500 리턴
     @ExceptionHandler(ConversionNotSupportedException.class)
-    public ResponseEntity<HttpResponse> handleException(ConversionNotSupportedException e, Locale locale) {
-        HttpResponse error = new HttpResponse();
+    public ResponseEntity<HttpErrorResponse> handleException(ConversionNotSupportedException e, Locale locale) {
+        HttpErrorResponse error = new HttpErrorResponse();
         error.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
         error.setMessage(getLocaleMessage(HttpStatus.INTERNAL_SERVER_ERROR, locale));
         error.setComment(e.getMessage());

@@ -21,7 +21,7 @@ public class LocaleConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public MessageSource messageSource() {
+    public static MessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
         messageSource.setBasename("locale/messages"); // messages.properties 파일이 위치한 폴더 지정
         messageSource.setDefaultEncoding("UTF-8");

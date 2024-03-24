@@ -8,7 +8,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class HttpResponse {
+public class HttpErrorResponse {
 
 	private int status;
     private String message;
